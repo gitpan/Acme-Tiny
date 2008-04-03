@@ -4,7 +4,7 @@ Acme::Tiny - As ::Tiny as a module can get
 
 =head1 VERSION
 
-This document describes Acme::Tiny version 0.2
+This document describes Acme::Tiny version 0.3
 
 =head1 SYNOPSIS
 
@@ -52,7 +52,7 @@ Its fun and I needed a break. See 'I still think its stupid' above.
 
 Adam Kennedy started a revolution, or at least a good idea: the ::Tiny suffix.
 
-While doing some 'tiny' jobs (for all the memory reduction possible) Adam was a great (patient) resource for feedback, actual *useful* feedback, who knew
+While doing some 'tiny' jobs (for all the memory reduction possible) Adam was a great (patient) resource for feedback, (actual *useful* feedback on rt: awesome)
 
 FYI, Adam if you want me to link to a more official ::Tiny resource or edit the rules, just let me know.
 
