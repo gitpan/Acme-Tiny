@@ -1,5 +1,8 @@
 Revision history for Acme-Tiny
 
+0.2  Thu Apr  3 08:24:26 2008
+       Forgot to put PDO into MANIFEST
+       
 0.1  Wed Apr  2 22:54:05 2008
        Initial release.
 
