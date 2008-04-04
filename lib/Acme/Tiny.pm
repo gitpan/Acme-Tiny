@@ -1,1 +1,1 @@
-package Acme::Tiny;$VERSION=.3
+package Acme::Tiny;$VERSION=.4

@@ -4,7 +4,7 @@ Acme::Tiny - As ::Tiny as a module can get
 
 =head1 VERSION
 
-This document describes Acme::Tiny version 0.3
+This document describes Acme::Tiny version 0.4
 
 =head1 SYNOPSIS
 
@@ -16,7 +16,7 @@ or for even less memory:
 
 =head1 DESCRIPTION
 
-This module meets every rule of ::Tiny (see below) in fact it couldn't get any tinier. (patches welcome if you've a tinier way)
+This module meets every rule of ::Tiny (see below) in fact it couldn't get any tinier (patches welcome if you've a tinier way, see 'Other solutions to the puzzle')
 
 =head2 This module is stupid
 
@@ -28,7 +28,7 @@ Proof of concept?
 
 Benchmarking or development testing of some sort?
 
-Maybe a quick and easy to find reference of the criteria for the ::Tiny name space? (See ::Tiny)
+Maybe a quick and easy to find reference of the criteria for the ::Tiny name space? (See '::Tiny')
 
 =head2 I still think its stupid
 
@@ -76,8 +76,6 @@ FYI, Adam if you want me to link to a more official ::Tiny resource or edit the 
 
 =item 8. If applicable, the module should be compatible with the larger module.
 
-Well you can still use it as a base class and use core isa stuff to see if you object isa one. Sounds like Mario, hmmm: UNIVERSAL::itsa(), J/K
-
 =back
 
 (Note: "there weren't ten": another joke! See rule #2 if you don't get it yet...)
@@ -120,6 +118,36 @@ Well you can still use it as a base class and use core isa stuff to see if you o
 
 =back
 
+=head2 Other solutions to the puzzle 
+
+=over 
+
+=item no package() version
+
+Sebastian Knapp asked me 'Why not $Acme::Tiny::VERSION=.4'. 
+
+Its a very good question actually. If we drop the package() and 
+go with the full name space $VERSION it drops 4K and works the same (with VERSION var, VERSION method *and* 'isa' checking). 
+I'd decided to go with package() though since it just felt right, somehow more proper in some mysterious way. 
+
+Thank you Sebatian for your email, excellent idea! I may switch to it in a future version but for now I'll hold on to the package().
+
+=item absolute tiniest file
+
+Another way is to have the .pm simply contain one character: 1
+
+It would be loadable and cut off appx 16K. However you'd are unable to check its version or the package's state (isa() says 'Base class package "Acme::Tiny" is empty')
+
+=item non decimal VERSION
+
+VERSION=N is appx 4K smaller memory use than $VERSION=.N
+
+Perhaps once I get a few more ideas like Sebastian's collected here and a URL fo Adam's offical ::Tiny page and any other useful information or items added we'll bump it to a whole number.
+
+I just like the decimal though, so I may just end up keeping it...
+
+=back
+
 =head1 INTERFACE 
 
 None really... well ok there is:
@@ -127,6 +155,22 @@ None really... well ok there is:
    $Acme::Tiny::VERSION
    
    Acme::Tiny->VERSION()
+
+or the "subset" of the L<Acme> functionality
+
+   package my::thingy;
+   use base 'Acme::Tiny';
+   ...
+   
+meanwhile back at the script:
+
+   use my::thingy;
+   if (my::thingy->isa('Acme::Tiny')) {
+       print "Yes please";
+   }
+   else {
+       print "No thank you";
+   }
 
 =head1 DIAGNOSTICS
 
