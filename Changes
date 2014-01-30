@@ -1,15 +1,12 @@
 Revision history for Acme-Tiny
 
-0.4  Thu Apr  3 20:55:36 2008
-       Fixed POD copy/paste leftover
-       Make sure the package can be used as a base class (Rule #2 subset of original mod, Acme.pm)
+0.003     2014-01-30 05:06:53Z
+          - renamed distribution from Tiny-Tiny to Acme-Tiny
 
-0.3  Thu Apr  3 08:26:19 2008
-       Fixed up Makefile to ferdiddle VERSION for CPAN indexor...
-       
-0.2  Thu Apr  3 08:24:26 2008
-       Forgot to put POD into MANIFEST
-       
-0.1  Wed Apr  2 22:54:05 2008
-       Initial release.
+0.002     2013-05-13 00:37:07Z
+          - avoid shipping large jpgs
+          - fixed image scaling
+
+0.001     2013-04-21 21:25:36Z
+          - Initial release (As Tiny::Tiny).
 
