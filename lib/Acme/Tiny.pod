@@ -1,0 +1,235 @@
+=head1 NAME
+
+Acme::Tiny - As ::Tiny as a module can get
+
+=head1 VERSION
+
+This document describes Acme::Tiny version 0.4
+
+=head1 SYNOPSIS
+
+    use Acme::Tiny;
+
+or for even less memory:
+
+    require Acme::Tiny; # we saved about 24K, thats gold!!
+
+=head1 DESCRIPTION
+
+This module meets every rule of ::Tiny (see below) in fact it couldn't get any tinier (patches welcome if you've a tinier way, see 'Other solutions to the puzzle')
+
+=head2 This module is stupid
+
+Well... YEAH, its a play on concepts not an actual tool in the sense that you are a tool... It *is* Acme:: afterall...
+
+=head2 What it might be useful for ...
+
+Proof of concept?
+
+Benchmarking or development testing of some sort?
+
+Maybe a quick and easy to find reference of the criteria for the ::Tiny name space? (See '::Tiny')
+
+=head2 I still think its stupid
+
+Sorry, I'm afraid there's no hope for you then.
+
+=head2 Why don't you spend time on useful stuff instead of this kind of junk?
+
+Its fun and I needed a break. See 'I still think its stupid' above.
+
+=head1 ::Tiny
+
+=head2 Writing a ::Tiny module
+
+If there is a need for a ::Tiny version of a heavier module and it meets the criteria for the ::Tiny name space then go for it! I applaud your effort to make things efficient!
+
+However, L<Please don't use ::Tiny unless it meets the ::Tiny criteria, thanks!|http://blogs.perl.org/users/dan_muey/2014/08/please-dont-use-tiny-unless-it-meets-the-tiny-criteria-thanks.html>
+
+Also, I suggest documenting some specifics on why this legitimately belongs under ::Tiny.
+
+For example, this module does so for itself under '10 Commandments of ::Tiny'.
+
+Another example is L<File::Path::Tiny> which has a "About the '::Tiny' status" section outlining bits of its tiny-ness.
+
+=head2 A brief history of ::Tiny
+
+Adam Kennedy started a revolution, or at least a good idea: the ::Tiny suffix.
+
+While doing some 'tiny' jobs (for all the memory reduction possible) Adam was a great (patient) resource for feedback, (actual *useful* feedback on rt: awesome)
+
+FYI, Adam if you want me to link to a more official ::Tiny resource or edit the rules, just let me know.
+
+=head2 10 Commandments of ::Tiny
+
+=over 4
+
+=item 1. The module should be implemented in "as little code as possible"
+
+=item 2. The module should implement a useful subset of functionality
+
+=item 3. The module should use at least 1/10th the amount of memory overhead, ideally less than 100k
+
+=item 4. The module MUST have no non-core dependencies
+
+=item 5. The module MUST be only one single .pm file
+
+=item 6. The module should be back-compatible to at least 5.004
+
+=item 7. The module should omit functionality rather than implement it incorrectly.
+
+=item 8. If applicable, the module should be compatible with the larger module.
+
+=back
+
+(Note: "there weren't ten": another joke! See rule #2 if you don't get it yet...)
+
+=head2 Acme::Tiny is ::Tiny, a guide
+
+=over 4
+
+=item 1. The module should be implemented in "as little code as possible"
+
+Technically we could ditch the $VERSION (and gain 8K +/-) but it'd be nice to be able to check the version (it has to do *something*)
+
+=item 2. The module should implement a useful subset of functionality
+
+L<Acme> doesn't really do anything so this expresses the most useful subset... pretty deep if you think about it.
+
+=item 3. The module should use at least 1/10th the amount of memory overhead, ideally less than 100k
+
+Its only 52K if you require() it. (Acme is 1104K so its about 50% of 1/10th) Ways to get it down further are welcome!
+
+=item 4. The module MUST have no non-core dependencies
+
+check
+
+=item 5. The module MUST be only one single .pm file
+
+check
+
+=item 6. The module should be back-compatible to at least 5.004
+
+check (so far anyway)
+
+=item 7. The module should omit functionality rather than implement it incorrectly.
+
+check and double check
+
+=item 8. If applicable, the module should be compatible with the larger module.
+
+Well you can still use it as a base class and use core isa stuff to see if you object isa one. Sounds like Mario.
+
+=back
+
+=head2 Other solutions to the puzzle 
+
+=over 
+
+=item no package() version
+
+Sebastian Knapp asked me 'Why not $Acme::Tiny::VERSION=.4'. 
+
+Its a very good question actually. If we drop the package() and 
+go with the full name space $VERSION it drops 4K and works the same (with VERSION var, VERSION method *and* 'isa' checking). 
+I'd decided to go with package() though since it just felt right, somehow more proper in some mysterious way. 
+
+Thank you Sebatian for your email, excellent idea! I may switch to it in a future version but for now I'll hold on to the package().
+
+=item absolute tiniest file
+
+Another way is to have the .pm simply contain one character: 1
+
+It would be loadable and cut off appx 16K. However you'd are unable to check its version or the package's state (isa() says 'Base class package "Acme::Tiny" is empty')
+
+=item non decimal VERSION
+
+VERSION=N is appx 4K smaller memory use than $VERSION=.N
+
+Perhaps once I get a few more ideas like Sebastian's collected here and a URL fo Adam's offical ::Tiny page and any other useful information or items added we'll bump it to a whole number.
+
+I just like the decimal though, so I may just end up keeping it...
+
+=back
+
+=head1 INTERFACE 
+
+None really... well ok there is:
+
+   $Acme::Tiny::VERSION
+   
+   Acme::Tiny->VERSION()
+
+or the "subset" of the L<Acme> functionality
+
+   package my::thingy;
+   use base 'Acme::Tiny';
+   ...
+   
+meanwhile back at the script:
+
+   use my::thingy;
+   if (my::thingy->isa('Acme::Tiny')) {
+       print "Yes please";
+   }
+   else {
+       print "No thank you";
+   }
+
+=head1 DIAGNOSTICS
+
+There's nothing to diagnose...
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+Acme::Tiny requires no configuration files or environment variables.
+
+=head1 DEPENDENCIES
+
+None.
+
+=head1 INCOMPATIBILITIES
+
+Its not compatible with up-tight people.
+
+=head1 BUGS AND LIMITATIONS
+
+No bugs have been reported.
+
+Please report any bugs or feature requests to
+C<bug-acme-tiny@rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org>.
+
+=head1 AUTHOR
+
+Daniel Muey  C<< <http://drmuey.com/cpan_contact.pl> >>
+
+=head1 LICENCE AND COPYRIGHT
+
+Copyright (c) 2008, Daniel Muey C<< <http://drmuey.com/cpan_contact.pl> >>. All rights reserved.
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=head1 DISCLAIMER OF WARRANTY
+
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
+YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
+NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
+LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
+OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
