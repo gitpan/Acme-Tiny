@@ -6,8 +6,8 @@ BEGIN {
 
 diag("Testing Acme::Tiny $Acme::Tiny::VERSION");
 
-is( Acme::Tiny->VERSION,  .5, 'Acme::Tiny->VERSION()' );
-is( $Acme::Tiny::VERSION, .5, '$Acme::Tiny::VERSION' );
+is( Acme::Tiny->VERSION,  .6, 'Acme::Tiny->VERSION()' );
+is( $Acme::Tiny::VERSION, .6, '$Acme::Tiny::VERSION' );
 
 package My::test;
 @ISA = ('Acme::Tiny');

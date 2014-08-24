@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME      => 'Acme::Tiny',
     AUTHOR    => 'Daniel Muey <http://drmuey.com/cpan_contact.pl>',
-    VERSION   => 0.5,
+    VERSION   => 0.6,
     ABSTRACT  => 'As ::Tiny as a module can get',
     PL_FILES  => {},
     PREREQ_PM => {

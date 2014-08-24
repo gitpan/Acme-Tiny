@@ -4,7 +4,7 @@ Acme::Tiny - As ::Tiny as a module can get
 
 =head1 VERSION
 
-This document describes Acme::Tiny version 0.4
+This document describes Acme::Tiny version 0.6
 
 =head1 SYNOPSIS
 
